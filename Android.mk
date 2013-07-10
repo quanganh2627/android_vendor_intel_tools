@@ -1,8 +1,5 @@
 LOCAL_PATH:= $(call my-dir)
 
-# Do not compile the Audience proxy if the board does not include Audience
-ifeq ($(BOARD_HAVE_AUDIENCE),true)
-
 include $(CLEAR_VARS)
 
 #######################################################################
@@ -36,7 +33,7 @@ LOCAL_STATIC_LIBRARIES := \
 LOCAL_MODULE_PATH := $(TARGET_OUT_OPTIONAL_EXECUTABLES)
 
 LOCAL_MODULE := ad_proxy
-LOCAL_MODULE_TAGS := debug
+LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_EXECUTABLE)
 
@@ -101,4 +98,3 @@ include $(BUILD_STATIC_LIBRARY)
 
 endif
 
-endif
