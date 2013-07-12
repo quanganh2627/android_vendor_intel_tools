@@ -61,8 +61,8 @@ int ad_i2c_sync(void)
 
     if (ad_i2c_write(sync, 4) == 4) {
         for (i=0; i < AD_I2C_SYNC_RETRIES; i++) {
-            if (ad_i2c_read(sync, 4) == 4) {
-                ALOGD("SYNC RES: 0x%02x%02x%02x%02x", sync[0], sync[1], sync[2], sync[3]);
+            if (ad_i2c_read(res, 4) == 4) {
+                ALOGD("SYNC RES: 0x%02x%02x%02x%02x", res[0], res[1], res[2], res[3]);
                 if ((res[0] == sync[0]) && (res[1] == sync[1]) &&
                     (res[2] == sync[2]) && (res[3] == sync[3])) {
                     ret = 0;
@@ -97,14 +97,7 @@ int ad_i2c_init(void)
     }
     close(ad_i2c_fd);
 
-    ad_i2c_sync();
-
-    return ad_i2c_fd;
-}
-
-void ad_i2c_exit(void)
-{
-    ad_i2c_fd = -1;
+    return ad_i2c_sync();
 }
 
 int ad_i2c_read(unsigned char *buf, int len)

@@ -83,7 +83,7 @@ static unsigned int get_command_arg(audience_command_t* cmd)
 static void ad_proxy_worker(int usb_tty_fd)
 
 {
-    static protocol_state_t state = STATE_WAIT_COMMAND;
+    protocol_state_t state = STATE_WAIT_COMMAND;
 
     audience_command_t audience_cmb_buf = {
         { 0, 0, 0, 0 }
@@ -224,7 +224,6 @@ static void ad_proxy_worker(int usb_tty_fd)
 
 int start_proxy(void)
 {
-    int ret = 0;
     int usb_tty_fd = -1;
 
     ALOGD("-->ad_proxy startup (Version %s)", AD_VERSION);
@@ -241,7 +240,6 @@ int start_proxy(void)
     if (ad_i2c_init() < 0) {
 
         ALOGE("%s open %s failed (%s)\n", __func__, AD_DEV_NODE, strerror(errno));
-        ret = -1;
     } else {
 
         // Infinite Work
@@ -253,5 +251,5 @@ int start_proxy(void)
     // close the acm tty
     close(usb_tty_fd);
 
-    return ret;
+    return -1;
 }

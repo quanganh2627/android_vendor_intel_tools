@@ -34,7 +34,6 @@
  * @return int value of the file descriptor
  */
 int ad_i2c_init(void);
-void ad_i2c_exit(void);
 int ad_i2c_read(unsigned char *buf, int len);
 int ad_i2c_write(unsigned char *buf, int len);
 
