@@ -27,6 +27,7 @@ extern "C" {
  * negative value.
  *
  * @return -1 which means the proxy stops on error
+ *            and errno set to indicate the error
  */
 int start_proxy(void);
 
